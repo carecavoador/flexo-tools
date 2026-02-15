@@ -112,5 +112,5 @@ def process_folder(folder):
 # ============================
 
 if __name__ == "__main__":
-    folder_path = "samples/test"  # pasta com as imagens
+    folder_path = "samples/wsi"  # pasta com as imagens
     results = process_folder(folder_path)

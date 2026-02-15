@@ -26,8 +26,12 @@ def indice_rugosidade(imagem_path):
     return rugosidade, grad_mag
 
 
-rug1, grad1 = indice_rugosidade(r"C:\Users\erodr\Downloads\MVP.jpg")
-rug2, grad2 = indice_rugosidade(r"C:\Users\erodr\Downloads\XTM.jpg")
+rug1, grad1 = indice_rugosidade(
+    r"C:\Users\erodr\src\flexo-tools\src\flexo-tools\rugosity\samples\FAC 284 D_01.png"
+)
+rug2, grad2 = indice_rugosidade(
+    r"C:\Users\erodr\src\flexo-tools\src\flexo-tools\rugosity\samples\MVP 170 D_01.jpg"
+)
 
 print(f"Rugosidade imagem 1: {rug1:.6f}")
 print(f"Rugosidade imagem 2: {rug2:.6f}")
@@ -36,12 +40,12 @@ plt.figure(figsize=(10, 4))
 
 plt.subplot(1, 2, 1)
 plt.imshow(grad1, cmap="gray")
-plt.title("Gradiente – Imagem 1")
+plt.title("Gradiente - Imagem 1")
 plt.axis("off")
 
 plt.subplot(1, 2, 2)
 plt.imshow(grad2, cmap="gray")
-plt.title("Gradiente – Imagem 2")
+plt.title("Gradiente - Imagem 2")
 plt.axis("off")
 
 plt.show()
