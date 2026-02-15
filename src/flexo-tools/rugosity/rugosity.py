@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def indice_rugosidade(imagem_path):
     # Carregar imagem em tons de cinza
     img = cv2.imread(imagem_path, cv2.IMREAD_GRAYSCALE)
@@ -24,26 +25,23 @@ def indice_rugosidade(imagem_path):
 
     return rugosidade, grad_mag
 
-# rug1, grad1 = indice_rugosidade(r"C:\Users\erodr\Downloads\FAC 284D.png")
-# rug2, grad2 = indice_rugosidade(r"C:\Users\erodr\Downloads\XPM 170D.png")
-# rug1, grad1 = indice_rugosidade(r"C:\Users\erodr\Downloads\32 Final.jpg")
-# rug2, grad2 = indice_rugosidade(r"C:\Users\erodr\Downloads\26.jpg")
+
 rug1, grad1 = indice_rugosidade(r"C:\Users\erodr\Downloads\MVP.jpg")
 rug2, grad2 = indice_rugosidade(r"C:\Users\erodr\Downloads\XTM.jpg")
 
 print(f"Rugosidade imagem 1: {rug1:.6f}")
 print(f"Rugosidade imagem 2: {rug2:.6f}")
 
-plt.figure(figsize=(10,4))
+plt.figure(figsize=(10, 4))
 
-plt.subplot(1,2,1)
-plt.imshow(grad1, cmap='gray')
+plt.subplot(1, 2, 1)
+plt.imshow(grad1, cmap="gray")
 plt.title("Gradiente – Imagem 1")
-plt.axis('off')
+plt.axis("off")
 
-plt.subplot(1,2,2)
-plt.imshow(grad2, cmap='gray')
+plt.subplot(1, 2, 2)
+plt.imshow(grad2, cmap="gray")
 plt.title("Gradiente – Imagem 2")
-plt.axis('off')
+plt.axis("off")
 
 plt.show()

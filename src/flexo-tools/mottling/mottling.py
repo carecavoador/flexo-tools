@@ -11,14 +11,15 @@ def load_grayscale_image(path: Path) -> np.ndarray:
     return img.astype(np.float32)
 
 
-def apply_gaussian_blur(img: np.ndarray, kernel: tuple, sigma: float) -> np.ndarray:
+def low_pass_filter(img: np.ndarray, kernel: tuple, sigma: float) -> np.ndarray:
     """Applies Gaussian blur to the image."""
     return cv2.GaussianBlur(img, kernel, sigma)
 
 
 def calculate_mottling_index(img: np.ndarray) -> tuple[float, float, float]:
     """
-    Calculates the mottling index based on the mean and standard deviation of the image.
+    Calculates the mottling index based on the mean and
+    standard deviation of the image.
     """
     mean = np.mean(img)
     std = np.std(img)
@@ -31,5 +32,5 @@ def mi_from_image(
 ) -> tuple[float, float, float]:
     """Calculates the mottling index directly from an image path."""
     img = load_grayscale_image(path)
-    filtered = apply_gaussian_blur(img, kernel, sigma)
+    filtered = low_pass_filter(img, kernel, sigma)
     return calculate_mottling_index(filtered)

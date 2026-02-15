@@ -18,6 +18,7 @@ ROI = None  # Exemplo: (x, y, w, h)
 # FUNÇÕES PRINCIPAIS
 # ============================
 
+
 def load_image_gray(path):
     """Carrega imagem e converte para escala de cinza"""
     img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
@@ -31,7 +32,7 @@ def apply_roi(img, roi):
     if roi is None:
         return img
     x, y, w, h = roi
-    return img[y:y+h, x:x+w]
+    return img[y : y + h, x : x + w]
 
 
 def low_pass_filter(img, kernel, sigma):
@@ -58,8 +59,8 @@ def plot_results(original, filtered, name, mi):
 
     plt.subplot(1, 2, 1)
     plt.title("Imagem Original")
-    plt.imshow(original, cmap='gray')
-    plt.axis('off')
+    plt.imshow(original, cmap="gray")
+    plt.axis("off")
 
     plt.subplot(1, 2, 2)
     # plt.title("Imagem Filtrada")
@@ -67,11 +68,12 @@ def plot_results(original, filtered, name, mi):
     # plt.axis('off')
 
     # plt.subplot(1, 3, 3)
-    diff = cv2.normalize(abs(filtered - np.mean(filtered)),
-                          None, 0, 255, cv2.NORM_MINMAX)
+    diff = cv2.normalize(
+        abs(filtered - np.mean(filtered)), None, 0, 255, cv2.NORM_MINMAX
+    )
     plt.title("Mapa de Não-Uniformidade")
-    plt.imshow(diff, cmap='inferno')
-    plt.axis('off')
+    plt.imshow(diff, cmap="inferno")
+    plt.axis("off")
 
     plt.suptitle(f"{name}  |  Mottling Index = {mi:.2f}%")
     plt.tight_layout()
@@ -82,11 +84,12 @@ def plot_results(original, filtered, name, mi):
 # PROCESSAMENTO EM LOTE
 # ============================
 
+
 def process_folder(folder):
     results = []
 
     for file in os.listdir(folder):
-        if file.lower().endswith(('.png', '.jpg', '.jpeg', '.tif', '.bmp')):
+        if file.lower().endswith((".png", ".jpg", ".jpeg", ".tif", ".bmp")):
             path = os.path.join(folder, file)
 
             img = load_image_gray(path)
@@ -109,5 +112,5 @@ def process_folder(folder):
 # ============================
 
 if __name__ == "__main__":
-    folder_path = "Imagens/Testar"  # pasta com as imagens
+    folder_path = "samples/test"  # pasta com as imagens
     results = process_folder(folder_path)
